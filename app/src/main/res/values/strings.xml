@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BaseFramework</string>
+
+
+    <string name="text_tab_home">首页</string>
+    <string name="text_tab_mien">服务圈</string>
+    <string name="text_tab_subject">IN社区</string>
+    <string name="text_tab_mine">我的</string>
+
+
+    <string name="tag_1">home</string>
+    <string name="tag_2">suject</string>
+    <string name="tag_3">mien</string>
+    <string name="tag_4">mine</string>
+
+
+</resources>
