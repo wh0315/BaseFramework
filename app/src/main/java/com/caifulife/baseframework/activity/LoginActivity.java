@@ -47,9 +47,6 @@ public class LoginActivity extends BaseActivity {
         glideRequest.load("https://www.baidu.com/img/bdlogo.png").transform(new GlideRoundTransform(this)).into(imageView1);
         //圆形
         glideRequest.load("https://www.baidu.com/img/bdlogo.png").transform(new GlideCircleTransform(this)).into(imageView2);
-
-
-
     }
 
     /**
