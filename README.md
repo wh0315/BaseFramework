@@ -1,5 +1,3 @@
-# BaseFramework
-
 package com.caifulife.baseframework.fargment;
 import android.view.View;
 import com.baidu.location.BDLocation;
@@ -62,16 +60,11 @@ public class MienFragment extends BaseFragment {
         option.setScanSpan(1000);
         mLocClient.setLocOption(option);
         mLocClient.start();
-
-
-       
-
     }
     /**
      * 定位SDK监听函数
      */
     public class MyLocationListenner implements BDLocationListener {
-
         @Override
         public void onReceiveLocation(BDLocation location) {
             // map view 销毁后不在处理新接收的位置
@@ -99,4 +92,26 @@ public class MienFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onPause() {
+        myMapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        myMapView.onResume();
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        // 退出时销毁定位
+        mLocClient.stop();
+        // 关闭定位图层
+        myBaiduMap.setMyLocationEnabled(false);
+        myMapView.onDestroy();
+        myMapView = null;
+        super.onDestroy();
+    }
 }
