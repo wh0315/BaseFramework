@@ -6,7 +6,10 @@ import android.os.Handler;
 import android.view.Window;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.caifulife.baseframework.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +23,8 @@ public class MyApplication extends Application {
     private static MyApplication instance ;
     private static Handler mHandler = null;
     private static int mainUITid;
-
+    public static List<?> images=new ArrayList<>();
+    public static List<String> titles=new ArrayList<>();
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,6 +32,14 @@ public class MyApplication extends Application {
         instance = this;
         mainUITid = android.os.Process.myTid();
         mHandler = new Handler();
+
+        String[] urls = getResources().getStringArray(R.array.url);
+        String[] tips = getResources().getStringArray(R.array.title);
+        List list = Arrays.asList(urls);
+        images = new ArrayList(list);
+        List list1 = Arrays.asList(tips);
+        titles= new ArrayList(list1);
+
     }
 
     /**

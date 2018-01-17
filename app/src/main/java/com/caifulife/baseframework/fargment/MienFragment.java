@@ -60,32 +60,11 @@ public class MienFragment extends BaseFragment {
         option.setScanSpan(1000);
         mLocClient.setLocOption(option);
         mLocClient.start();
-
-
-       /* myMapView = view.findViewById(R.id.baiduMapView);
-        myBaiduMap = myMapView.getMap();
-        //根据给定增量缩放地图级别
-        MapStatusUpdate msu= MapStatusUpdateFactory.zoomTo(18.0f);
-        myBaiduMap.setMapStatus(msu);
-        mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
-        myBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
-                        mCurrentMode, true, null));
-        // 定位初始化
-        mLocClient = new LocationClient(getActivity());
-        mLocClient.registerLocationListener(myListener);
-        LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true); // 打开gps
-        option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(1000);
-        mLocClient.setLocOption(option);
-        mLocClient.start();*/
-
     }
     /**
      * 定位SDK监听函数
      */
     public class MyLocationListenner implements BDLocationListener {
-
         @Override
         public void onReceiveLocation(BDLocation location) {
             // map view 销毁后不在处理新接收的位置
@@ -113,4 +92,26 @@ public class MienFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onPause() {
+        myMapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        myMapView.onResume();
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        // 退出时销毁定位
+        mLocClient.stop();
+        // 关闭定位图层
+        myBaiduMap.setMyLocationEnabled(false);
+        myMapView.onDestroy();
+        myMapView = null;
+        super.onDestroy();
+    }
 }
